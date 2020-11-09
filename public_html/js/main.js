@@ -9,6 +9,8 @@ global = {};
 global.player = {};
 global.perkTree = {};
 global.base = {};
+//Lib is for JSON data
+lib = {};
 
 //Call the start function when the document is fully loaded
 $(document).ready(function(){
@@ -35,6 +37,27 @@ function init() {
     
 }
 
+
+//Function to compile all json files
+function compileAllJSON() {
+    compileJSON("lib/adj.json", "adj");
+    compileJSON("lib/weapons/melee.json", "melee");
+}
+
+//Generic function used to compile all JSON data into the global lib object
+function compileJSON(JSONfile, obj) {
+    $.ajax({
+        type: "Get",
+        url: JSONfile,
+        dataType: "json",
+        success: function(data) {
+            lib[obj] = data[obj];
+        },
+        error: function(){
+            alert("Cannot connect to server's json library!");
+        }
+    });
+}
 
 let weapon1;
 //TEST FUNCTIONS

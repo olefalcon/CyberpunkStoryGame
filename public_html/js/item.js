@@ -16,6 +16,7 @@
  */
 
 /*global global*/
+/*global lib*/
 
 
 class Item {
@@ -32,34 +33,24 @@ class Item {
         
         let db;
         let item = this;
-        $.ajax({
-            type: "Get",
-            url: "lib/adj.json",
-            dataType: "json",
-            success: function(data) {
-                db = data.adj;
-                
-                //Choose a random weapon name to display based on rarity
-                let entry = null;
-                while (entry === null) {
-                    //Pick a random integer from 0 to the length of the db - 1
-                    let random = getRndInteger(0,db.length - 1);
-                    let dbEntry = db[random];
-                    //If selected entry matches requested tier use it
-                    if (dbEntry.tier === tier) {
-                        entry = dbEntry;
-                    } else { //If selected entry does not match requested tier remove it from the tempmorary array
-                        db.splice(db.indexOf(dbEntry),1);
-                    }
-                }
-                item._adj = entry.adj;
-                item._tier = entry.tier;
-            },
-            error: function(){
-                alert("Cannot connect to server's json library!");
+        db = lib.adj;
+
+        //Choose a random weapon name to display based on rarity
+        let entry = null;
+        while (entry === null) {
+            //Pick a random integer from 0 to the length of the db - 1
+            let random = getRndInteger(0,db.length - 1);
+            let dbEntry = db[random];
+            //If selected entry matches requested tier use it
+            if (dbEntry.tier === tier) {
+                entry = dbEntry;
+            } else { //If selected entry does not match requested tier remove it from the tempmorary array
+                db.splice(db.indexOf(dbEntry),1);
             }
-        });
-        
+        }
+        item._adj = entry.adj;
+        item._tier = entry.tier;
+
     }
     
     //Get functions
@@ -310,35 +301,25 @@ class Stim extends Item {
     }
 }
 
-function generateWeaponEssentials(tier, jsonDir, obj) {
+function generateWeaponEssentials(tier, objLib, obj) {
     //Assign name and icon through a json grab
         let db;
         let item = obj;
-        $.ajax({
-            type: "Get",
-            url: jsonDir,
-            dataType: "json",
-            success: function(data) {
-                db = data.melee;
+        db = lib[objLib];
                 
-                //Choose a random weapon name to display based on rarity
-                let entry = null;
-                while (entry === null) {
-                    //Pick a random integer from 0 to the length of the db - 1
-                    let random = getRndInteger(0,db.length - 1);
-                    let dbEntry = db[random];
-                    //If selected entry matches requested tier use it
-                    if (dbEntry.tier === tier) {
-                        entry = dbEntry;
-                    } else { //If selected entry does not match requested tier remove it from the tempmorary array
-                        db.splice(db.indexOf(dbEntry),1);
-                    }
-                }
-                item._name = entry.name;
-                item._icon = entry.icon;
-            },
-            error: function(){
-                alert("Cannot connect to server's json library!");
+        //Choose a random weapon name to display based on rarity
+        let entry = null;
+        while (entry === null) {
+            //Pick a random integer from 0 to the length of the db - 1
+            let random = getRndInteger(0,db.length - 1);
+            let dbEntry = db[random];
+            //If selected entry matches requested tier use it
+            if (dbEntry.tier === tier) {
+                entry = dbEntry;
+            } else { //If selected entry does not match requested tier remove it from the tempmorary array
+                db.splice(db.indexOf(dbEntry),1);
             }
-        });
+        }
+        item._name = entry.name;
+        item._icon = entry.icon;
 }
