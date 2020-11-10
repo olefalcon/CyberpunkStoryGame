@@ -1,0 +1,14 @@
+{
+    "throwables": [
+        {
+            "name": "Throwing Knife",
+            "icon": "src/icons/throwables/throwingknife.png",
+            "tier": 1
+        },
+        {
+            "name": "Plasma Grenade",
+            "icon": "src/icons/throwables/plasmagrenade.png",
+            "tier": 2
+        }
+    ]
+}

@@ -24,7 +24,7 @@ class Combat {
         //Combat variables
         this._attackers = attackers;
         this._defenders = defenders;
-        this._turnChar = null;
+        this._turnChar = attackers[0];
         this._turnTeam = attackers;
         this._round = null;
         //Reference to location
@@ -34,11 +34,44 @@ class Combat {
     
     //Methods
     cycleTurn() {
-        
-        //Check which team the current turn character is on
-        if (this._turnTeam === this._attackers) {
-            
+        //Get Index of current char in team array
+        let teamIndex = this._turnTeam.indexOf(this._turnChar);
+        if (this._turnTeam[teamIndex + 1] !== null) {
+            this._turnChar = this._turnTeam[teamIndex+1];
+        } else {
+            //Swap to the first character on the other team
+            if (this._turnTeam === this._attackers) {
+                this._turnTeam = this._defenders;
+                this._turnChar = this._defenders[0];
+            } else if (this._turnTeam === this._defenders) {
+                this._turnTeam = this._attackers;
+                this._turnChar = this._attackers[0];
+            }
         }
+    }
+    
+    killCombatant(combatant) {
+        //Check if combatant is on either team using index of
+        //If so remove them from thats team list
+        let isAttacker = this._attackers.indexOf(combatant);
+        if (isAttacker !== null) {
+            this._attackers.pop(isAttacker);
+        }
+        let isDefender = this._defenders.indexOf(combatant);
+        if (isDefender !== null) {
+            this._defenders.pop(isDefender);
+        }
+    }
+    
+    checkForEnd() {
+        if (this._attackers === []) {
+            endCombat("defenders");
+        } else if (this._defenders === []) {
+            endCombat("attackers");
+        }
+    }
+    
+    endCombat(winner) {
         
     }
     

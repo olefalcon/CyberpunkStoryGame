@@ -1,0 +1,14 @@
+{
+    "pistols": [
+        {
+            "name": "Glock 17",
+            "icon": "src/icons/pistols/glock17.png",
+            "tier": 1
+        },
+        {
+            "name": "USP",
+            "icon": "src/icons/pistols/usp.png",
+            "tier": 2
+        }
+    ]
+}

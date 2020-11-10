@@ -1,13 +1,13 @@
 {
-    "melee": [
+    "melees": [
         {
             "name": "Pool Cue",
-            "icon": "src/icons/melee/poolcue.png",
+            "icon": "src/icons/melees/poolcue.png",
             "tier": 1
         },
         {
             "name": "Steak Knife",
-            "icon": "src/icons/melee/steakknife.png",
+            "icon": "src/icons/melees/steakknife.png",
             "tier": 1
         }
     ]

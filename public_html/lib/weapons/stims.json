@@ -1,0 +1,9 @@
+{
+    "stims": [
+        {
+            "name": "Generic Stim",
+            "icon": "src/icons/stims/stim1.png",
+            "tier": 1
+        }
+    ]
+}

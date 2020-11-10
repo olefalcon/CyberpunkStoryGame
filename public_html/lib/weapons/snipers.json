@@ -1,0 +1,14 @@
+{
+    "snipers": [
+        {
+            "name": "M1 Garand",
+            "icon": "src/icons/snipers/m1.png",
+            "tier": 1
+        },
+        {
+            "name": ".50 Cal",
+            "icon": "src/icons/snipers/50cal.png",
+            "tier": 5
+        }
+    ]
+}

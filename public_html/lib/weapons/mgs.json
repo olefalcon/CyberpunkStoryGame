@@ -1,0 +1,14 @@
+{
+    "mgs": [
+        {
+            "name": "AR-15",
+            "icon": "src/icons/mgs/ar15.png",
+            "tier": 1
+        },
+        {
+            "name": "M4 Carbine",
+            "icon": "src/icons/mgs/m4carbine.png",
+            "tier": 3
+        }
+    ]
+}

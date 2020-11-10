@@ -19,7 +19,8 @@ $(document).ready(function(){
 
 //All functions to call to start the game
 function start() {
-    testWeaponSpawn();
+    compileAllJSON();
+    load();
 }
 
 //Function to save data
@@ -29,7 +30,8 @@ function save() {
 
 //Function to recall data
 function load() {
-    
+    //if no data is located on local storage then initialize values
+    init();
 }
 
 //Function to init variables to starting values
@@ -37,11 +39,24 @@ function init() {
     
 }
 
+//Functions to call when game is in run state (compiling and loading/initialization is done)
+function run() {
+    testWeaponSpawn();
+}
+
 
 //Function to compile all json files
+let compileCount = 0;
+let filesToCompile = 8;
 function compileAllJSON() {
     compileJSON("lib/adj.json", "adj");
-    compileJSON("lib/weapons/melee.json", "melee");
+    compileJSON("lib/weapons/melees.json", "melees");
+    compileJSON("lib/weapons/pistols.json", "pistols");
+    compileJSON("lib/weapons/stims.json", "stims");
+    compileJSON("lib/weapons/elementals.json", "elementals");
+    compileJSON("lib/weapons/throwables.json", "throwables");
+    compileJSON("lib/weapons/snipers.json", "snipers");
+    compileJSON("lib/weapons/mgs.json", "mgs");
 }
 
 //Generic function used to compile all JSON data into the global lib object
@@ -52,9 +67,16 @@ function compileJSON(JSONfile, obj) {
         dataType: "json",
         success: function(data) {
             lib[obj] = data[obj];
+            compileCount ++;
+            //If all compiles are done then call run function
+            if (compileCount === filesToCompile) {
+                run();
+            }
+            return true;
         },
         error: function(){
             alert("Cannot connect to server's json library!");
+            return false;
         }
     });
 }

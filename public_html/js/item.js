@@ -138,7 +138,7 @@ class Melee extends Weapon {
     //Constructor
     constructor(tier) {
         super(tier);        
-        generateWeaponEssentials(tier, "lib/weapons/melee.json", this);
+        generateWeaponEssentials(tier, "melees", this);
         //Melee specific variables
         this._counterDamage;
         this._counterChance;
@@ -243,7 +243,7 @@ class Pistol extends AmmoWeapon {
     //Constructor
     constructor(tier) {
         super(tier);
-        generateWeaponEssentials(tier, "lib/weapons/pistols.json", this);
+        generateWeaponEssentials(tier, "pistols", this);
     }
 }
 
@@ -306,6 +306,7 @@ function generateWeaponEssentials(tier, objLib, obj) {
         let db;
         let item = obj;
         db = lib[objLib];
+        console.log(lib);
                 
         //Choose a random weapon name to display based on rarity
         let entry = null;

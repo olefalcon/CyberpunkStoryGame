@@ -1,0 +1,14 @@
+{
+    "elementals": [
+        {
+            "name": "Fire Gun",
+            "icon": "src/icons/elementals/firegun.png",
+            "tier": 1
+        },
+        {
+            "name": "Ice Gun",
+            "icon": "src/icons/elementals/icegun.png",
+            "tier": 1
+        }
+    ]
+}
